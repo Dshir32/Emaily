@@ -8,6 +8,6 @@ module.exports = {
 
 
 // emaily-prod: mongodb+srv://dshir:dlGiklvPDguhhPjm@cluster0.uyeua.mongodb.net/emailyprod?retryWrites=true&w=majority
-// clientID - 986225087673-ti9mjtn7srmpg14onggr4k2gnei9rand.apps.googleusercontent.com
-// client secret - wEKGmJ4_eKJYeuhnSyuieJlO
+// clientID - 986225087673-s86d83qh1ru5cmr6ji8gfh3qiat6758b.apps.googleusercontent.com
+// client secret - pYxBrqGRAmVchwA8C_FbmYEG
 //cookie key - shirdahan

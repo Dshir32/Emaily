@@ -2,11 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
-const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 require('./models/user');
+require('./models/Survey');
 require('./services/passport');
-
 
 const app = express();
 app.use(express.urlencoded({extended: true}));
@@ -23,18 +22,18 @@ app.use(passport.session());
 const proxy = require('http-proxy-middleware');
 module.exports = function(app) {
     app.use(proxy('/auth/google', 
-        { target: 'http://localhost:5000/' }
+        { target: 'http://localhost:5000' }
     ));
     app.use(proxy('/api/*', 
-    { target: 'http://localhost:5000'        }
+    { target: 'http://localhost:5000' }
       ));
 }
-
 
 // This line below is equal to us declaring -----> const authRoutes =  require('./routes/authRoutes')
 //And than calling it like so ----->  authRoutes(app) 
 require('./routes/authRoutes')(app); 
-require('./routes/billingRoutes')(app); 
+require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app); 
 
 if(process.env.NODE_ENV !== 'production') {
     //Express will serve prod assets like main.js/main.css

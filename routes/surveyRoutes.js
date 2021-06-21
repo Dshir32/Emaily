@@ -31,19 +31,14 @@ module.exports = app => {
     });
 
     const mailer = new Mailer(survey, surveyTemplate(survey));
-    console.log("mailer is: " + mailer);
-    console.log("req is:" + req.body);
       try {
         await mailer.send();
         await survey.save();
         req.user.credits -= 1;
         const user = await req.user.save();
         res.send(user);
-        console.log("mailer is 2: " + mailer.body , mailer);
-
       } catch (err) {
         res.status(422).send(err);
       }   
   });
-
 }

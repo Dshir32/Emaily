@@ -13,6 +13,11 @@ module.exports = app => {
     res.send('Thanks for voting!');
   });
 
+  app.post('/api/surveys/webhooks', (req, res) => {
+    console.log(req.body);
+    res.send({});
+  });
+
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     const { title, body, subject, recipients } = req.body;
 
@@ -26,16 +31,19 @@ module.exports = app => {
     });
 
     const mailer = new Mailer(survey, surveyTemplate(survey));
+    console.log("mailer is: " + mailer);
+    console.log("req is:" + req.body);
       try {
         await mailer.send();
         await survey.save();
         req.user.credits -= 1;
         const user = await req.user.save();
-        
         res.send(user);
+        console.log("mailer is 2: " + mailer.body , mailer);
 
       } catch (err) {
         res.status(422).send(err);
       }   
   });
+
 }

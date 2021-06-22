@@ -25,6 +25,7 @@ class Header extends Component {
 
     render() {
         return (
+            <React.Fragment>
             <nav>
                 <div className="nav-wrapper">
                     <Link 
@@ -37,6 +38,7 @@ class Header extends Component {
                     </ul>
                 </div>
             </nav>
+            </React.Fragment>
         );
     }
 }
